@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <title>SearchTube.com</title>
+
+ 
+    <style>
+
+        body{
+            margin: 0;
+            padding-top: 80px;
+            padding-left: 80px;
+
+        }
+
+        p{
+            font-family: Roboto, Arial;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .thumbnail{
+            width: 100%;
+        }
+
+        .search-bar{
+            display: block;
+        }
+
+        .video-description{
+            margin-top: 0;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 20px;
+            margin-bottom: 12px;
+        }
+
+        .video-info-grid{
+            display: grid;
+            grid-template-columns: 50px 1fr;
+        }
+
+       
+
+        .profile-picture{
+            width: 40px;
+            border-radius: 50px;
+        }
+
+        .thumbnail-row{
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .video-author{
+            font-size: 12px;
+            color: rgb(96, 96, 96);
+            margin-bottom: 4px;
+        }
+
+        .video-grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 16px;
+            row-gap: 40px;
+        }
+
+        .video-stats{
+            font-size: 12px;
+            color: rgb(96, 96, 96);
+        }
+
+        .header{
+            height:55px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(235, 230, 230);
+            z-index: 100;
+
+        }
+
+        .left-section{
+           
+            display: flex;
+            align-items: center;
+        }
+
+        .middle-section{
+            
+            display: flex;
+            align-items: center;
+            flex: 1;
+            margin-left: 70px;
+            margin-right: 35px
+            
+        }
+
+        .right-section{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: 24px;
+            flex-shrink: 0;
+            width: 100px
+            
+        }
+
+        .search-bar{
+            flex: 1;
+            height: 36px;
+            padding-left: 10px;
+            font-size: 14px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(196, 192, 192);
+            border-radius: 3px;
+            box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05) ;
+        }
+
+        .search-bar::placeholder{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+        }
+
+        .menu-icon{
+            height: 24px;
+            margin-left: 24px;
+            margin-right: 24px;
+        }
+        .logo-icon{
+            color: red;
+            font-weight: bolder;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .search-button{
+            height: 40px;
+            width: 40px;
+            background-color: rgb(216, 211, 211);
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgb(196, 192, 192);
+            margin-left: -1px;
+            margin-right: 10px;
+        }
+
+        .search-icon{
+            margin-top: 4px;
+        }
+
+        .voice-search-button{
+            height: 40px;
+            width: 40px;
+            border-radius: 20px;
+            border: none;
+            background-color: rgb(223, 219, 219);
+        }
+
+        .voice-icon{
+            height: 24px;
+            margin-top: 4px;
+            
+        }
+
+        .upload-icon{
+            height: 23px;
+        }
+
+        .notification-icon{
+            height: 23px;
+        }
+
+        /* .notifications-icon-container{
+            position: relative;
+        }
+        .notifications-count{
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: red;
+            color: white;
+        } */
+        .side-bar{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            top: 55px;
+            background-color: white;
+            width: 70px;
+            z-index: 200px;
+        }
+        .sidebar-link{
+            background-color: lightgray;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            
+        }
+        .sidebar-link:hover{
+            background-color: rgb(241, 239, 239);
+        }
+        .sidebar-link img{
+            height: 24px;
+        }
+        .sidebar-link div{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+        }
+        .video-time{
+            background-color: black;
+            color: white;
+            position: absolute;
+            font-family: Arial, Helvetica, sans-serif;
+            bottom: 8px;
+            right: 5px;
+            font-size: 12px;
+            font-weight: 500;
+            padding-left: 4px;
+            padding-right: 4px;
+            padding-bottom: 4px;
+            padding-top: 4px;
+            border-radius: 3px;
+        }
+      
+    </style>
+    <body>
+        <div class="header">
+            <div class="left-section"> <img  class="menu-icon" src="icons/bars-solid.svg">
+                search<span class="logo-icon">TUBE</span>
+            </div>
+            <div class="middle-section">
+                <input class="search-bar" type="textbox" placeholder="Search">
+                <button class="search-button">
+                <img class="search-icon" src="icons/searchengin.svg">
+                </button>
+                <button class="voice-search-button">
+                    <img class="voice-icon" src="icons/microphone-solid.svg">
+                </button>
+            </div>
+            <div class="right-section"> 
+                <img class="upload-icon" src="icons/upload-solid.svg">
+                 
+                    <img class="notification-icon" src="icons/bell-solid.svg">
+                
+                
+            </div>
+            
+        </div>
+
+        <div class="side-bar">
+            <div class="sidebar-link">
+                <img src="icons/house-solid.svg">
+                
+            </div>
+            <div class="sidebar-link">
+                <img src="icons/browse.svg">
+                
+            </div>
+            <div class="sidebar-link">
+                <img src="icons/music.svg">
+                
+            </div>
+            <div class="sidebar-link">
+                <img src="icons/subscription.svg">
+                
+            </div>
+            <div class="sidebar-link">
+                <img src="icons/subscription.svg">
+                
+            </div>
+            <div class="sidebar-link">
+                <img src="icons/searchengin.svg">
+                
+            </div>
+       </div>
+
+        <div class="video-grid">
+
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="thumbnails/thumbnail 1.jpg">
+                    <div class="video-time">14:20</div>
+                </div>
+                <div class="video-info-grid">
+                 <div class="channel-picture"><img class="profile-picture" src="channel-pictures/pic 1.jpg"></div>
+                 <div class="video-info"><p class="video-description">
+                    Oga Mecho and Group of silly boys 
+                </p>
+        
+                <p class="video-author">
+                    IsBaeU Barbie
+                </p>
+        
+                <p class="video-stats">
+                    3.4M Views &#183; 2 months ago
+                </p></div>
+                    
+                    
+                </div>
+                
+            </div>
+        
+        
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="thumbnails/thumbnail 2.jpg">
+                    <div class="video-time">12:25</div>
+                </div>
+                <div class="video-info-grid">
+                 <div class="channel-picture"><img class="profile-picture" src="channel-pictures/pic 2.jpg"></div>
+                 <div class="video-info"><p class="video-description">
+                    Fastest Reader in Naija Got Talent 
+                </p>
+        
+                <p class="video-author">
+                    Josh2Funny
+                </p>
+        
+                <p class="video-stats">
+                    17k Views &#183; 1 week ago
+                </p></div>
+                    
+                    
+                </div>
+                
+            </div>
+        
+            
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="thumbnails/thumbnail 3.jpg">
+                    <div class="video-time">16:40</div>
+                </div>
+                <div class="video-info-grid">
+                 <div class="channel-picture"><img class="profile-picture" src="channel-pictures/pic 3.jpg"></div>
+                 <div class="video-info"><p class="video-description">
+                   Things people won't tell you about Software Development
+                </p>
+        
+                <p class="video-author">
+                    Marie Bondal
+                </p>
+        
+                <p class="video-stats">
+                    1.2M Views &#183;  4 months ago
+                </p></div>
+                    
+                    
+                </div>
+                
+            </div>
+        
+        
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="thumbnails/thumbnail 4.jpg">
+                    <div class="video-time">24:12</div>
+                </div>
+                <div class="video-info-grid">
+                 <div class="channel-picture"><img class="profile-picture" src="channel-pictures/pic 4.jpg"></div>
+                 <div class="video-info"><p class="video-description">
+                    Website Development using JS and HTML 
+                </p>
+        
+                <p class="video-author">
+                    Dana Crook
+                </p>
+        
+                <p class="video-stats">
+                    20k Views &#183; 3 weeks ago
+                </p></div>
+                    
+                    
+                </div>
+                
+            </div>
+        
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="thumbnails/thumbnail 1.jpg">
+                    <div class="video-time">35:49</div>
+                </div>
+                <div class="video-info-grid">
+                 <div class="channel-picture"><img class="profile-picture" src="channel-pictures/pic 1.jpg"></div>
+                 <div class="video-info"><p class="video-description">
+                    Mechanic Boys and Hooligans 2
+                </p>
+        
+                <p class="video-author">
+                    IsBaeU Barbie 2
+                </p>
+        
+                <p class="video-stats">
+                    1.4M Views &#183; 1 month ago
+                </p></div>
+                    
+                    
+                </div>
+                
+            </div>
+        
+        
+            <div class="video-preview">
+                <div class="thumbnail-row">
+                    <img class="thumbnail" src="thumbnails/thumbnail 2.jpg">
+                    <div class="video-time">45:12</div>
+                </div>
+                <div class="video-info-grid">
+                 <div class="channel-picture"><img class="profile-picture" src="channel-pictures/pic 2.jpg"></div>
+                 <div class="video-info"><p class="video-description">
+                    Josh the Book Magician  
+                </p>
+        
+                <p class="video-author">
+                    Josh2Funny 2
+                </p>
+        
+                <p class="video-stats">
+                    55k Views &#183; 3 weeks ago
+                </p></div>
+                    
+                    
+                </div>
+                
+            </div>
+        </div>
+       
+    
+    
+    </body>
+</html>
